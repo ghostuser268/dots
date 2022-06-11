@@ -1,0 +1,93 @@
+#!/bin/sh
+screenshot(){
+	echo file name: ; read input 
+
+	sleep 3
+
+	ffmpeg -f x11grab -video_size 1920x1080 -i $DISPLAY -vframes 1 ~/pictures/$input.png > /dev/null 2>&1 
+	clear ; echo "${input} added to Pictures."
+}
+
+short(){
+	position=0
+
+	for folder in ~/Web/Apps/* ; do
+		position=$((position+1))
+		echo $position $folder
+	done
+
+	echo -n 'Enter:'; read choice 
+
+	position=0
+
+	for folder in ~/Web/Apps/* ; do
+		position=$((position+1))
+		if [ $choice == $position ] ; then
+ 			cd $folder ;clear; ls -l 
+		fi
+	done
+}
+
+#Shutdown | Reboot
+alias sd='sudo poweroff'
+alias rb='reboot'
+
+#ExpressVPN
+alias vc='expressvpn connect' 
+alias vd='expressvpn disconnect ;'
+alias vs='expressvpn status ;'
+
+#Browsers
+alias ff='devour firefox '
+alias ch='devour chromium '
+
+#Suckless
+alias sl='cd ~/suckless/ && ls'
+
+alias .='clear;cd ~; ls'
+alias fm='xplr'
+
+#Extract file
+alias untar="tar -zxvf "
+
+#Pacman 
+alias pacinstall='sudo pacman -S '
+alias pacfind='sudo pacman -Ss '
+alias pacupdate='sudo pacman -Syu'
+alias packages="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias pacremove='sudo pacman -Rs '
+
+#Find
+
+#Pictures
+alias pics='devour feh -. ~/pictures/'
+
+#screenshot
+alias ss=screenshot
+
+get_errors(){
+	echo -n Level: ; read level
+	sudo journalctl -rp $level
+}
+
+
+#Colors
+alias ls='exa --icons -l'
+alias la='exa  --icons -la'
+alias diff='diff --color=auto'
+alias ip='ip -color=auto' 
+alias grep='grep --color=auto'
+
+
+#Loggin
+alias dmesg="sudo dmesg --color=always | less"
+alias err=get_errors
+
+#Web Development
+alias d='sudo docker '
+alias nvim='~/downloads/git/neovim/build/bin/nvim'
+
+alias dc='sudo docker-compose'
+alias insomnia='insomnia'
+alias mc='devour mongodb-compass'
+alias sqlwb='devour mysql-workbench'
