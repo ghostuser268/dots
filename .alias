@@ -1,4 +1,6 @@
 #!/bin/sh
+
+
 screenshot(){
 	echo file name: ; read input 
 
@@ -28,8 +30,10 @@ short(){
 	done
 }
 
+
+
 #Shutdown | Reboot
-alias sd='sudo poweroff'
+alias sd='poweroff'
 alias rb='reboot'
 
 #ExpressVPN
@@ -66,8 +70,8 @@ alias pics='devour feh -. ~/pictures/'
 alias ss=screenshot
 
 get_errors(){
-	echo -n Level: ; read level
-	sudo journalctl -rp $level
+#	echo -n Level: ; read level
+	sudo journalctl -rp $1
 }
 
 
@@ -81,7 +85,7 @@ alias grep='grep --color=auto'
 
 #Loggin
 alias dmesg="sudo dmesg --color=always | less"
-alias err=get_errors
+alias j=get_errors
 
 #Web Development
 alias d='sudo docker '

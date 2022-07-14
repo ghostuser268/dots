@@ -13,7 +13,7 @@ source /usr/share/git/git-prompt.sh
 #		Env Variables
 #============================================
 export SUCKLESS="$HOME/suckless"
-
+export POLYBAR="$HOME/confs/polybar"
 #Colors
 export LESS='-R --use-color -Dd+r$Du+b'
 export PASSWORD_STORE_CLIP_TIME=240
@@ -23,7 +23,7 @@ export FZF_DEFAULT_OPTS="
 --border sharp 
 --margin=1 
 --height=25 
---color="16,fg:1,preview-fg:4,border:1"
+--color='16,fg:1,preview-fg:4,border:1'
 --preview '([[ -f {} ]] && (cat -n {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 "
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .password-store  --exclude .git --exclude .gitignore'
@@ -32,6 +32,7 @@ export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .password-st
 #		Paths
 #============================================
 PATH=$PATH:${HOME}/.config/coc/extensions/coc-clangd-data/install/*/clangd*
+PATH=$PATH:${HOME}/.cargo/bin
 PATH="${PATH}:${HOME}/.local/bin/"
 PATH=$PATH:/usr/local/go/bin
 PATH="$PATH:${HOME}/go/bin"
@@ -44,29 +45,29 @@ bind -x '"\C-t":`__fzf_cd__`'
 #============================================
 #		TTY
 #============================================
-#!/bin/sh
 if [ "$TERM" = "linux" ]; then
   /bin/echo -e "
-  \e]P0101010
-  \e]P17c7c7c
-  \e]P28e8e8e
-  \e]P3a0a0a0
-  \e]P4686868
-  \e]P5747474
-  \e]P6868686
-  \e]P7b9b9b9
-  \e]P8525252
-  \e]P97c7c7c
-  \e]PA8e8e8e
-  \e]PBa0a0a0
-  \e]PC686868
-  \e]PD747474
-  \e]PE868686
-  \e]PFf7f7f7
+  \e]P0353535
+  \e]P1744b40
+  \e]P26d6137
+  \e]P3765636
+  \e]P461564b
+  \e]P56b4a49
+  \e]P6435861
+  \e]P7b3b3b3
+  \e]P85f5f5f
+  \e]P9785850
+  \e]PA6f6749
+  \e]PB776049
+  \e]PC696057
+  \e]PD6f5a59
+  \e]PE525f66
+  \e]PFcdcdcd
   "
   # get rid of artifacts
   clear
 fi
+
 
 #============================================
 #		PS1
