@@ -47,26 +47,27 @@ bind -x '"\C-t":`__fzf_cd__`'
 #============================================
 if [ "$TERM" = "linux" ]; then
   /bin/echo -e "
-  \e]P0353535
-  \e]P1744b40
-  \e]P26d6137
-  \e]P3765636
-  \e]P461564b
-  \e]P56b4a49
-  \e]P6435861
-  \e]P7b3b3b3
-  \e]P85f5f5f
-  \e]P9785850
-  \e]PA6f6749
-  \e]PB776049
-  \e]PC696057
-  \e]PD6f5a59
-  \e]PE525f66
-  \e]PFcdcdcd
+  \e]P0222222
+  \e]P1e84f4f
+  \e]P2b7ce42
+  \e]P3fea63c
+  \e]P466aabb
+  \e]P5b7416e
+  \e]P66d878d
+  \e]P7dddddd
+  \e]P8666666
+  \e]P9d23d3d
+  \e]PAbde077
+  \e]PBffe863
+  \e]PCaaccbb
+  \e]PDe16a98
+  \e]PE42717b
+  \e]PFcccccc
   "
   # get rid of artifacts
   clear
 fi
+
 
 
 #============================================
