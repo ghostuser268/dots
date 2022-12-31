@@ -31,12 +31,29 @@ short(){
 }
 
 
+#https://github.com/microsoft/uf2/blob/master/utils/uf2conv.md
+uf2(){
+  file=$1
+  file_op=$PWD/$2.uf2
+  script=$HOME/downloads/git/uf2/utils/uf2conv.py
+  $script -c -f 0xe48bff56 -b 0x10000000 $file -o $file_op
+
+  echo -e "New		=>\n
+============================="
+  
+  $script -i $file_op
+
+}
+
+alias uf2con=uf2
+alias as='devour ~/downloads/android-studio/bin/studio.sh'
 
 #Shutdown | Reboot
 alias sd='poweroff'
 alias rb='reboot'
 
 #ExpressVPN
+alias va='expressvpn activate' 
 alias vc='expressvpn connect' 
 alias vd='expressvpn disconnect ;'
 alias vs='expressvpn status ;'
@@ -46,7 +63,7 @@ alias ff='devour firefox '
 alias ch='devour chromium '
 
 #Suckless
-alias sl='cd ~/suckless/ && ls'
+alias sl='cd ~/personal/suckless/ && ls'
 
 alias .='clear;cd ~; ls'
 alias fm='xplr'
@@ -89,8 +106,6 @@ alias j=get_errors
 
 #Web Development
 alias d='sudo docker '
-alias nvim='~/downloads/git/neovim/build/bin/nvim'
-
 alias dc='sudo docker-compose'
 alias insomnia='insomnia'
 alias mc='devour mongodb-compass'

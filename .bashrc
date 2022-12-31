@@ -1,8 +1,8 @@
 # ~/.bashrc
 #
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-[[ -f ~/scripts/colorSchemeAliens.sh ]] && ~/scripts/colorSchemeAliens.sh
+#[[ $- != *i* ]] && return
+#[[ -f ~/scripts/colorSchemeAliens.sh ]] && ~/scripts/colorSchemeAliens.sh
 
 #Source
 [[ -f ~/.alias ]] && source ~/.alias || echo "Error sourcing alias file."
@@ -45,28 +45,30 @@ bind -x '"\C-t":`__fzf_cd__`'
 #============================================
 #		TTY
 #============================================
+#!/bin/sh
 if [ "$TERM" = "linux" ]; then
   /bin/echo -e "
-  \e]P0222222
-  \e]P1e84f4f
-  \e]P2b7ce42
-  \e]P3fea63c
-  \e]P466aabb
-  \e]P5b7416e
-  \e]P66d878d
-  \e]P7dddddd
-  \e]P8666666
-  \e]P9d23d3d
-  \e]PAbde077
-  \e]PBffe863
-  \e]PCaaccbb
-  \e]PDe16a98
-  \e]PE42717b
-  \e]PFcccccc
+  \e]P0101010
+  \e]P17c7c7c
+  \e]P28e8e8e
+  \e]P3a0a0a0
+  \e]P4686868
+  \e]P5747474
+  \e]P6868686
+  \e]P7b9b9b9
+  \e]P8525252
+  \e]P97c7c7c
+  \e]PA8e8e8e
+  \e]PBa0a0a0
+  \e]PC686868
+  \e]PD747474
+  \e]PE868686
+  \e]PFf7f7f7
   "
   # get rid of artifacts
   clear
 fi
+
 
 
 
@@ -127,32 +129,34 @@ function parse_git_dirty {
 	fi
 }
 
-name(){
-	#c1=124
-	#c2=160
+#name(){
+	##c1=124
+	##c2=160
 
-	c1=1
-	c2=9
-	count=0
-	for i in $( whoami | sed -e 's/\(.\)/\1\n/g' );do
-		count=$((count+1))
-		noColor="\e[0m"
-		if [[ $(expr $count % 2) == 0 ]];then
-			c1=$((c1+1))
-			color="\[\033[01;38;5;${c1}m\]"
-			echo -n "$color$i$noColor" 
-		elif [[ $(expr $count % 2) != 0 ]];then 
-			c2=$((c2+1))
-			color="\[\033[01;38;5;${c2}m\]"
-			echo -n "$color$i$noColor" 
-		fi
-	done
-}
+	#c1=1
+	#c2=9
+	#count=0
+	#for i in $( whoami | sed -e 's/\(.\)/\1\n/g' );do
+		#count=$((count+1))
+		#noColor="\e[0m"
+		#if [[ $(expr $count % 2) == 0 ]];then
+			#c1=$((c1+1))
+			#color="\[\033[01;38;5;${c1}m\]"
+			#echo -n "$color$i$noColor" 
+		#elif [[ $(expr $count % 2) != 0 ]];then 
+			#c2=$((c2+1))
+			#color="\[\033[01;38;5;${c2}m\]"
+			#echo -n "$color$i$noColor" 
+		#fi
+	#done
+#}
 
-nameFinal="\[\033[01;38;5;9m(`name`\[\033[01;38;5;9m)"
-directory="(\w)"
+#nameFinal="\[\033[01;38;5;9m(`name`\[\033[01;38;5;9m)"
+directory="\w"
 git="\[\e[31m\]\`parse_git_branch\`\[\e[m\]"
 prompt="\[\033[01;38;5;8m\]>\[\033[01;38;5;9m\]>\[\033[01;38;5;10m\]> \[\033[01;38;5;15m\]"
-PS1="$nameFinal $directory$git\n $prompt"
+#PS1="$nameFinal $directory$git\n $prompt"
+
+PS1="\n\[[\033[01;38;5;014m\]ﬦ\e[0m] $directory$git\n$prompt"
 
 
