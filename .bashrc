@@ -4,25 +4,26 @@
 #[[ $- != *i* ]] && return
 #[[ -f ~/scripts/colorSchemeAliens.sh ]] && ~/scripts/colorSchemeAliens.sh
 
+
 #Source
 [[ -f ~/.alias ]] && source ~/.alias || echo "Error sourcing alias file."
 source /usr/share/git/git-prompt.sh
-
-
 #============================================
 #		Env Variables
 #============================================
 export SUCKLESS="$HOME/suckless"
 export POLYBAR="$HOME/confs/polybar"
+
+export TERMINAL="/usr/local/bin/st"
 #Colors
 export LESS='-R --use-color -Dd+r$Du+b'
 export PASSWORD_STORE_CLIP_TIME=240
 export EDITOR=/usr/local/bin/nvim
 export FZF_DEFAULT_OPTS="
 --exact
---border sharp 
---margin=1 
---height=25 
+--border sharp
+--margin=1
+--height=25
 --color='16,fg:1,preview-fg:4,border:1'
 --preview '([[ -f {} ]] && (cat -n {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 "
@@ -36,8 +37,18 @@ PATH=$PATH:${HOME}/.cargo/bin
 PATH="${PATH}:${HOME}/.local/bin/"
 PATH=$PATH:/usr/local/go/bin
 PATH="$PATH:${HOME}/go/bin"
+PATH="$PATH:${HOME}/.local/share/nvim/mason/bin"
 
-#Fzf
+if [ -f /bin/nnn ];then
+   
+ export NNN_PLUG='v:imgview;p:preview-tui'
+ export NNN_FCOLORS="0404040000000600010F0F02"
+ export NNN_FIFO=/tmp/nnn.fifo
+
+else 
+   echo "missing package: nnn"
+fi
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 bind -x '"\C-t":`__fzf_cd__`'
@@ -47,8 +58,8 @@ bind -x '"\C-t":`__fzf_cd__`'
 #============================================
 #!/bin/sh
 if [ "$TERM" = "linux" ]; then
-  /bin/echo -e "
-  \e]P0101010
+/bin/echo -e "
+\e]P0101010
   \e]P17c7c7c
   \e]P28e8e8e
   \e]P3a0a0a0
@@ -82,7 +93,7 @@ function parse_git_branch() {
 		color=1
 		NC="\[\e[m\]]"
 		echo -n " "
-		for i in $(echo $BRANCH | sed -e 's/\(.\)/\1\n/g'); do 
+		for i in $(echo $BRANCH | sed -e 's/\(.\)/\1\n/g'); do
 			color=$((color-1))
 			branch="\033[01;38;5;${color}m${i}"
 			echo -en "${branch}"
@@ -142,11 +153,11 @@ function parse_git_dirty {
 		#if [[ $(expr $count % 2) == 0 ]];then
 			#c1=$((c1+1))
 			#color="\[\033[01;38;5;${c1}m\]"
-			#echo -n "$color$i$noColor" 
-		#elif [[ $(expr $count % 2) != 0 ]];then 
+			#echo -n "$color$i$noColor"
+		#elif [[ $(expr $count % 2) != 0 ]];then
 			#c2=$((c2+1))
 			#color="\[\033[01;38;5;${c2}m\]"
-			#echo -n "$color$i$noColor" 
+			#echo -n "$color$i$noColor"
 		#fi
 	#done
 #}

@@ -31,6 +31,14 @@ short(){
 }
 
 
+
+
+
+
+
+
+
+
 #https://github.com/microsoft/uf2/blob/master/utils/uf2conv.md
 uf2(){
   file=$1
@@ -66,7 +74,7 @@ alias ch='devour chromium '
 alias sl='cd ~/personal/suckless/ && ls'
 
 alias .='clear;cd ~; ls'
-alias fm='xplr'
+alias fm='nnn -deoP p'
 
 #Extract file
 alias untar="tar -zxvf "
