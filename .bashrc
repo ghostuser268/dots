@@ -1,9 +1,8 @@
 # ~/.bashrc
 #
 # If not running interactively, don't do anything
-#[[ $- != *i* ]] && return
+[[ $- != *i* ]] && return
 #[[ -f ~/scripts/colorSchemeAliens.sh ]] && ~/scripts/colorSchemeAliens.sh
-
 
 #Source
 [[ -f ~/.alias ]] && source ~/.alias || echo "Error sourcing alias file."
@@ -11,14 +10,14 @@ source /usr/share/git/git-prompt.sh
 #============================================
 #		Env Variables
 #============================================
+export _JAVA_AWT_WM_NONREPARENTING=1
 export SUCKLESS="$HOME/suckless"
-export POLYBAR="$HOME/confs/polybar"
-
+export POLYBAR="$HOME/personal/confs/polybar"
 export TERMINAL="/usr/local/bin/st"
 #Colors
 export LESS='-R --use-color -Dd+r$Du+b'
 export PASSWORD_STORE_CLIP_TIME=240
-export EDITOR=/usr/local/bin/nvim
+export EDITOR=/usr/bin/nvim
 export FZF_DEFAULT_OPTS="
 --exact
 --border sharp
@@ -27,7 +26,7 @@ export FZF_DEFAULT_OPTS="
 --color='16,fg:1,preview-fg:4,border:1'
 --preview '([[ -f {} ]] && (cat -n {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 "
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .password-store  --exclude .git --exclude .gitignore'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .password-store  --exclude .git --exclude .gitignore --exclude node_modules --exclude .npm'
 
 #============================================
 #		Paths
@@ -40,13 +39,11 @@ PATH="$PATH:${HOME}/go/bin"
 PATH="$PATH:${HOME}/.local/share/nvim/mason/bin"
 
 if [ -f /bin/nnn ];then
-   
  export NNN_PLUG='v:imgview;p:preview-tui'
  export NNN_FCOLORS="0404040000000600010F0F02"
  export NNN_FIFO=/tmp/nnn.fifo
-
 else 
-   echo "missing package: nnn"
+   echo "missing package=nnn"
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
@@ -140,34 +137,10 @@ function parse_git_dirty {
 	fi
 }
 
-#name(){
-	##c1=124
-	##c2=160
-
-	#c1=1
-	#c2=9
-	#count=0
-	#for i in $( whoami | sed -e 's/\(.\)/\1\n/g' );do
-		#count=$((count+1))
-		#noColor="\e[0m"
-		#if [[ $(expr $count % 2) == 0 ]];then
-			#c1=$((c1+1))
-			#color="\[\033[01;38;5;${c1}m\]"
-			#echo -n "$color$i$noColor"
-		#elif [[ $(expr $count % 2) != 0 ]];then
-			#c2=$((c2+1))
-			#color="\[\033[01;38;5;${c2}m\]"
-			#echo -n "$color$i$noColor"
-		#fi
-	#done
-#}
-
-#nameFinal="\[\033[01;38;5;9m(`name`\[\033[01;38;5;9m)"
 directory="\w"
 git="\[\e[31m\]\`parse_git_branch\`\[\e[m\]"
 prompt="\[\033[01;38;5;8m\]>\[\033[01;38;5;9m\]>\[\033[01;38;5;10m\]> \[\033[01;38;5;15m\]"
-#PS1="$nameFinal $directory$git\n $prompt"
 
-PS1="\n\[[\033[01;38;5;014m\]ﬦ\e[0m] $directory$git\n$prompt"
+PS1="\n\[[\033[01;38;5;014m\]󰘧\e[0m] $directory$git\n$prompt"
 
 
