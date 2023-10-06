@@ -3,17 +3,30 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 #[[ -f ~/scripts/colorSchemeAliens.sh ]] && ~/scripts/colorSchemeAliens.sh
-
 #Source
 [[ -f ~/.alias ]] && source ~/.alias || echo "Error sourcing alias file."
 source /usr/share/git/git-prompt.sh
 #============================================
 #		Env Variables
 #============================================
+
+export APPS_JSON='[
+  {
+    "url": "https://github.com/frappe/erpnext",
+    "branch": "version-14"
+  },
+  {
+    "url": "https://github.com/frappe/waba_integration",
+    "branch": "main"
+  }
+]'
+export APPS_JSON_BASE64=$(echo ${APPS_JSON} | base64 -w 0)
+
 export _JAVA_AWT_WM_NONREPARENTING=1
 export SUCKLESS="$HOME/suckless"
 export POLYBAR="$HOME/personal/confs/polybar"
 export TERMINAL="/usr/local/bin/st"
+export TESSDATA_PREFIX="/usr/share/tessdata/"
 #Colors
 export LESS='-R --use-color -Dd+r$Du+b'
 export PASSWORD_STORE_CLIP_TIME=240
@@ -26,6 +39,8 @@ export FZF_DEFAULT_OPTS="
 --color='16,fg:1,preview-fg:4,border:1'
 --preview '([[ -f {} ]] && (cat -n {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 "
+
+
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .password-store  --exclude .git --exclude .gitignore --exclude node_modules --exclude .npm'
 
 #============================================
@@ -36,6 +51,12 @@ PATH=$PATH:${HOME}/.cargo/bin
 PATH="${PATH}:${HOME}/.local/bin/"
 PATH=$PATH:/usr/local/go/bin
 PATH="$PATH:${HOME}/go/bin"
+
+PATH="$PATH:${HOME}/personal/programs/flutter/bin"
+
+PATH="$PATH:/home/ghostuser/Android/Sdk/tools/bin"
+
+
 PATH="$PATH:${HOME}/.local/share/nvim/mason/bin"
 
 if [ -f /bin/nnn ];then

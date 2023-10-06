@@ -13,7 +13,7 @@ screenshot(){
 	clear ; echo "${input} added to Pictures."
 }
 alias screenshot=screenshot
-alias pics='devour feh -. ~/pictures/'
+alias pics='feh -. ~/pictures/'
 #============================================
 #		FZF PACMAN
 #============================================
@@ -34,53 +34,15 @@ alias gpass="gpass"
 #		 MISC
 #============================================
 
-#https://github.com/microsoft/uf2/blob/master/utils/uf2conv.md
-uf2(){
-  file=$1
-  file_op=$PWD/$2.uf2
-  script=$HOME/downloads/git/uf2/utils/uf2conv.py
-  $script -c -f 0xe48bff56 -b 0x10000000 $file -o $file_op
 
-  echo -e "New		=>\n
-============================="
-  
-  $script -i $file_op
-
-}
 #holder
 alias wp='~/.config/hypr/scripts/wallpaper.sh'
-#
-alias ssh='proxychains ssh -o ServerAliveInterval=60 -xC'
-alias scp='proxychains scp '
-
-alias outline='devour outline-client'
-alias uf2con=uf2
-alias as='devour ~/downloads/android-studio/bin/studio.sh'
-
+alias ssh='ssh -o ServerAliveInterval=60 -xC'
 alias sd='poweroff'
 alias rb='reboot'
-
-#ExpressVPN
-alias va='expressvpn activate' 
-alias vc='expressvpn connect' 
-alias vd='expressvpn disconnect ;'
-alias vs='expressvpn status ;'
-
-#Browsers
-alias ff='devour firefox '
-
-#Suckless
-alias sl='cd ~/personal/suckless/ && ls'
-
 alias .='clear;cd ~; ls'
 alias fm='nnn -deoP p'
-
-#Extract file
 alias untar="tar -zxvf "
-
-#Pictures
-
-
 get_errors(){
 #	echo -n Level: ; read level
 	sudo journalctl -rp $1
@@ -94,14 +56,10 @@ alias diff='diff --color=auto'
 alias ip='ip -color=auto' 
 alias grep='grep --color=auto'
 
-
-#Loggin
+#Logging
 alias dmesg="sudo dmesg --color=always | less"
 alias j=get_errors
 
 #Web Development
 alias d='sudo docker '
 alias dc='sudo docker-compose'
-alias insomnia='insomnia'
-alias mc='devour mongodb-compass'
-alias sqlwb='devour mysql-workbench'
